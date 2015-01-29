@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>Yourtion.tools.cny</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>22B725F3-E203-4DAE-B0A1-3030FE350A2D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E0FEAA98-6136-4769-B2FE-DF95334AAF44</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>YourtionGuo</string>
+	<key>description</key>
+	<string>转换数字为人民币金额</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>人民币金额大写</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>cny</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>script</key>
+				<string>import math     
+def numtoCny(num):     
+	capUnit = ['万','亿','万','圆','']     
+	capDigit = { 2:['角','分',''], 4:['仟','佰','拾','']}     
+	capNum=['零','壹','贰','叁','肆','伍','陆','柒','捌','玖']     
+	snum = str('%019.02f') % num     
+	if snum.index('.')&gt;16:     
+		return ''    
+	ret,nodeNum,subret,subChr='','','',''    
+	CurChr=['','']     
+	for i in range(5):     
+		j=int(i*4+math.floor(i/4))     
+		subret=''    
+		nodeNum=snum[j:j+4]     
+		lens=len(nodeNum)     
+		for k in range(lens):     
+			if int(nodeNum[k:])==0:     
+				continue    
+			CurChr[k%2] = capNum[int(nodeNum[k:k+1])]     
+			if nodeNum[k:k+1] != '0':     
+				CurChr[k%2] += capDigit[lens][k]     
+			if  not ((CurChr[0]==CurChr[1]) and (CurChr[0]==capNum[0])):     
+				if not((CurChr[k%2] == capNum[0]) and (subret=='') and (ret=='')):     
+					subret += CurChr[k%2]     
+		subChr = [subret,subret+capUnit[i]][subret!='']     
+		if not ((subChr == capNum[0]) and (ret=='')):     
+			ret += subChr     
+	return [ret,capNum[0]+capUnit[3]][ret=='']  
+
+def callback(strs):
+	print( '&lt;?xml version="1.0"?&gt;')
+	print('&lt;items&gt;')
+	print("  &lt;item uid=\"octal\" valid=\"yes\" arg=\""+strs+"\"&gt;")
+	print("    &lt;title&gt;"+strs+"&lt;/title&gt;")
+	print('    &lt;subtitle&gt;Copy to clipboard&lt;/subtitle&gt;')
+	#print('    &lt;icon&gt;icon.png&lt;/icon&gt;')
+	print('  &lt;/item&gt;')
+	print('&lt;/items&gt;')
+
+callback(numtoCny({query}))</string>
+				<key>title</key>
+				<string>人民币 ￥ {query}</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>22B725F3-E203-4DAE-B0A1-3030FE350A2D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>E0FEAA98-6136-4769-B2FE-DF95334AAF44</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>22B725F3-E203-4DAE-B0A1-3030FE350A2D</key>
+		<dict>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+		<key>E0FEAA98-6136-4769-B2FE-DF95334AAF44</key>
+		<dict>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
