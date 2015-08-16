@@ -1,6 +1,6 @@
 Alfred_NumToCny
 ===========
 
-转换数字为人民币金额的Alfred Workflow
+## 转换数字为人民币金额的 Alfred Workflow
 
 ![](ScreenShot.JPG)
