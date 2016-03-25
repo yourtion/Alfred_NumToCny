@@ -27,7 +27,10 @@ def to_rmb_upper(price):
     #处理万亿以上的部分
     if integer_part >= 1000000000000 and wanyi_part > 0:
         zero_count = _parse_integer(strio, wanyi_part, zero_count, True)
-        strio.write('万')
+        if yi_part > 0:
+            strio.write('万')
+        else:
+            strio.write('万亿')
 
     #处理亿到千亿的部分
     if integer_part >= 100000000 and yi_part > 0:
