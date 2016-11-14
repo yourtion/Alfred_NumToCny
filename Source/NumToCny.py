@@ -7,13 +7,15 @@
 '''
 
 from cStringIO import StringIO
+from decimal import Decimal
 import math
 
 _RMB_DIGITS = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖' ]
 _SECTION_CHARS = ['', '拾', '佰', '仟', '万' ]
 
 def to_rmb_upper(price):
-    price = round(price, 2)
+    price = Decimal(price)
+    price = Decimal('{:.2f}'.format(price))
     integer_part = int(price)
     wanyi_part = integer_part / 1000000000000
     yi_part = integer_part % 1000000000000 / 100000000
