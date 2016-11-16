@@ -1,15 +1,12 @@
 #encoding: utf-8
 
 import NumToCny
+import json
 
-def callback(strs):
-	print('<?xml version="1.0"?>')
-	print('<items>')
-	print("  <item uid=\"octal\" valid=\"yes\" arg=\""+strs+"\">")
-	print("    <title>"+strs+"</title>")
-	print('    <subtitle>Copy to clipboard</subtitle>')
-	print('    <icon>icon.png</icon>')
-	print('  </item>')
-	print('</items>')
+def parse(strs):
+    res = {"title": strs,"subtitle": "Copy to clipboard","arg": "Copy to clipboard","icon": "icon.png"}
+    return {"items": [res]}
 
-callback(NumToCny.to_rmb_upper({query}))
+ret = NumToCny.to_rmb_upper({query})
+
+print(json.dumps(parse(ret)))
