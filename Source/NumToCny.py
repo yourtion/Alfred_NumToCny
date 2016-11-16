@@ -23,6 +23,7 @@ def to_rmb_upper(price):
     qian_part = integer_part % 10000
     dec_part = int(price * 100 % 100)
 
+
     strio = StringIO()
 
     zero_count = 0
@@ -36,13 +37,13 @@ def to_rmb_upper(price):
 
     #处理亿到千亿的部分
     if integer_part >= 100000000 and yi_part > 0:
-        is_first_section = integer_part >= 100000000 and integer_part < 1000000000000 
+        is_first_section = integer_part >= 100000000 and integer_part < 1000000000000
         zero_count = _parse_integer(strio, yi_part, zero_count, is_first_section)
         strio.write('亿')
 
     #处理万的部分
     if integer_part >= 10000 and wan_part > 0:
-        is_first_section = integer_part >= 1000 and integer_part < 10000000 
+        is_first_section = integer_part >= 1000 and integer_part < 10000000
         zero_count = _parse_integer(strio, wan_part, zero_count, is_first_section)
         strio.write('万')
 
@@ -56,7 +57,7 @@ def to_rmb_upper(price):
         strio.write('圆')
 
     #处理小数
-    if dec_part > 0: 
+    if dec_part > 0:
         _parse_decimal(strio, integer_part, dec_part, zero_count)
     elif dec_part == 0 and integer_part > 0:
         strio.write('整')
@@ -99,4 +100,4 @@ def _parse_decimal(strio, integer_part, value, zero_count):
         strio.write(_RMB_DIGITS[fen])
         strio.write('分')
     else:
-        strio.write('整') 
+        strio.write('整')

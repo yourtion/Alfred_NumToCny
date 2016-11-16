@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>Yourtion.tools.cny</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>22B725F3-E203-4DAE-B0A1-3030FE350A2D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E0FEAA98-6136-4769-B2FE-DF95334AAF44</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Yourtion Guo</string>
+	<key>description</key>
+	<string>转换数字为人民币金额</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>人民币金额大写</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>cny</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>#encoding: utf-8
+
+import NumToCny
+import json
+
+def parse(strs):
+    res = {"title": strs,"subtitle": "Copy to clipboard","arg": "Copy to clipboard","icon": "icon.png"}
+    return {"items": [res]}
+
+ret = NumToCny.to_rmb_upper('{query}')
+
+print(json.dumps(parse(ret)))</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>输入人民币数字金额</string>
+				<key>title</key>
+				<string>人民币 {query}</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>22B725F3-E203-4DAE-B0A1-3030FE350A2D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>E0FEAA98-6136-4769-B2FE-DF95334AAF44</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>转换数字为人民币金额</string>
+	<key>uidata</key>
+	<dict>
+		<key>22B725F3-E203-4DAE-B0A1-3030FE350A2D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+		<key>E0FEAA98-6136-4769-B2FE-DF95334AAF44</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.4</string>
+	<key>webaddress</key>
+	<string>https://github.com/yourtion/Alfred_NumToCny</string>
+</dict>
+</plist>
