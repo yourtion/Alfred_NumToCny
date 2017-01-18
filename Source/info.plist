@@ -60,8 +60,8 @@ import NumToCny
 import json
 
 def parse(strs):
-    res = {"title": strs,"subtitle": "Copy to clipboard","arg": "Copy to clipboard","icon": "icon.png"}
-    return {"items": [res]}
+    res = { "title": strs, "subtitle": "Copy to clipboard","arg": strs, "icon": "icon.png" }
+    return { "items": [res] }
 
 ret = NumToCny.to_rmb_upper('{query}')
 
@@ -124,7 +124,7 @@ print(json.dumps(parse(ret)))</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.4</string>
+	<string>1.5</string>
 	<key>webaddress</key>
 	<string>https://github.com/yourtion/Alfred_NumToCny</string>
 </dict>
