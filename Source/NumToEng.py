@@ -48,6 +48,9 @@ def gimmeThemWords(number, index):
 
     return string;
 
+def not_empty(s):
+    return not len(s.strip()) == 0
+
 #initiates the process of converting the number into its cardinal form
 def to_eng(number):
     length = len(str(number));
@@ -60,10 +63,5 @@ def to_eng(number):
     for i in range(length - 1, -1, -3):
         word_representation.append(gimmeThemWords(str(number)[0 if i - 2 < 0 else i - 2 : i + 1], counter_copy - counter));
         counter -= 1;
-    return ", ".join(reversed(word_representation))
-
-    # for s in reversed(word_representation):
-    #     if(not len(s.strip()) == 0):
-    #         print(s, word_representation);
-
-# to_eng(11242)
+    res = ", ".join(filter(not_empty, reversed(word_representation))).strip()
+    return res.capitalize()
